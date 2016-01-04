@@ -39,8 +39,8 @@ public class HudCsv {
     static void importData(String csvName) {
         Connection conn = null;
         try {
-            log.info("Reading excel file servicepoint_sample.xlsx ...");
-            File xcel = new File("../servicepoint_sample.xlsx");
+            log.info("Reading excel file " + csvName + " ...");
+            File xcel = new File(csvName);
             if (!xcel.exists()) {
                 log.error("File not found");
                 return;
@@ -55,58 +55,56 @@ public class HudCsv {
             XSSFWorkbook wBook = new XSSFWorkbook(new FileInputStream(xcel));
             XSSFSheet sheet = null;
             String sheetName = null;
+
+            // Iterate thru all sheets.
             int numberOfSheets = wBook.getNumberOfSheets();
             for (int i = 0; i < numberOfSheets; i++) {
-                // Find matching sheet.
                 sheet = wBook.getSheetAt(i);
                 sheetName = sheet.getSheetName();
-                if (sheetName.equalsIgnoreCase(csvName)) {
-                    break;
-                }
-            }
 
-            // Import data.
-            log.info("Reading " + sheetName + " ...");
-            sheetName = sheetName.toLowerCase();
-            switch (sheetName) {
-                case "export":
-                    ExportCsv.importData(conn, sheet);
-                    break;
-                case "organization":
-                    OrganizationCsv.importData(conn, sheet);
-                    break;
-                case "project":
-                    ProjectCsv.importData(conn, sheet);
-                    break;
-                case "client":
-                    ClientCsv.importData(conn, sheet);
-                    break;
-                case "enrollment":
-                    EnrollmentCsv.importData(conn, sheet);
-                    break;
-                case "exit":
-                    ExitCsv.importData(conn, sheet);
-                    break;
-                case "incomebenefits":
-                    IncomeBenefitsCsv.importData(conn, sheet);
-                    break;
-                case "healthanddv":
-                    HealthDvCsv.importData(conn, sheet);
-                    break;
-                case "disabilities":
-                    DisabilitiesCsv.importData(conn, sheet);
-                    break;
-                case "employmenteducation":
-                    EmploymentEducationCsv.importData(conn, sheet);
-                    break;
-                case "casemanager":
-                    CaseManagerCsv.importData(conn, sheet);
-                    break;
-                case "exitext":
-                    ExitExtCsv.importData(conn, sheet);
-                    break;
-                default:
-                    break;
+                // Import data.
+                log.info("Reading " + sheetName + " ...");
+                sheetName = sheetName.toLowerCase();
+                switch (sheetName) {
+                    case "export":
+                        ExportCsv.importData(conn, sheet);
+                        break;
+                    case "organization":
+                        OrganizationCsv.importData(conn, sheet);
+                        break;
+                    case "project":
+                        ProjectCsv.importData(conn, sheet);
+                        break;
+                    case "client":
+                        ClientCsv.importData(conn, sheet);
+                        break;
+                    case "enrollment":
+                        EnrollmentCsv.importData(conn, sheet);
+                        break;
+                    case "exit":
+                        ExitCsv.importData(conn, sheet);
+                        break;
+                    case "incomebenefits":
+                        IncomeBenefitsCsv.importData(conn, sheet);
+                        break;
+                    case "healthanddv":
+                        HealthDvCsv.importData(conn, sheet);
+                        break;
+                    case "disabilities":
+                        DisabilitiesCsv.importData(conn, sheet);
+                        break;
+                    case "employmenteducation":
+                        EmploymentEducationCsv.importData(conn, sheet);
+                        break;
+                    case "casemanager":
+                        CaseManagerCsv.importData(conn, sheet);
+                        break;
+                    case "exitext":
+                        ExitExtCsv.importData(conn, sheet);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         catch (IOException ioe) {
