@@ -163,7 +163,7 @@ public class CaseManagerCsv {
 
     public void debug() {
         log.info("Case Manager ID: " + this.caseManagerId);
-        log.info("Enrollment ID: " + this.projectId);
+        log.info("Project ID: " + this.projectId);
         log.info("Client ID: " + this.personalId);
         log.info("Case Manager Name: " + this.name);
         log.info("Case Manager Email: " + this.email);

@@ -31,7 +31,7 @@ public class HudCsv {
     }
 
     static void usage() {
-        System.err.println("usage: java -jar HudCsv.jar import/view <excel-sheet-name>");
+        System.err.println("usage: java -jar HudCsv.jar import/view <excel-file.xlsx>");
         System.err.println("");
         System.exit(-1);
     }
@@ -115,7 +115,7 @@ public class HudCsv {
         }
         finally {
             DbUtils.closeConnection(conn);
-        }        
+        }
     }
 
     static void viewData(String csvName) {
@@ -145,6 +145,6 @@ public class HudCsv {
         }
         finally {
             DbUtils.closeConnection(conn);
-        }        
+        }
     }
 }
